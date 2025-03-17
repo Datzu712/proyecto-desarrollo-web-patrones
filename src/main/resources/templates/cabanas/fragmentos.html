@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+        
+        <section th:fragment = "cabanas">
+            <h2 class="text-center mb-4">Tu hogar lejos de casa, rodeado de naturaleza</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="../img/cabana1.jpg" class="card-img-top" alt="Cabaña 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Cabaña 1</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet est ut sapien pretium rhoncus. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                <a th:href="@{/cabanas/infoCabanas/listado}" class="btn btn-primary">Ver más</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="../img/cabana2.jpg" class="card-img-top" alt="Cabaña 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Cabaña 2</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet est ut sapien pretium rhoncus. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                <a th:href="@{/cabanas/infoCabanas/listado}" class="btn btn-primary">Ver más</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="../img/cabana3.jpg" class="card-img-top" alt="Cabaña 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Cabaña 3</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet est ut sapien pretium rhoncus. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                <a th:href="@{/cabanas/infoCabanas/listado}" class="btn btn-primary">Ver más</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
