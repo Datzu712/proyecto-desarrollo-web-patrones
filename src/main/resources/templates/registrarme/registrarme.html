@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"></header>
+        <div class="divider"></div>
+        <div class="usuario">
+            <h1>Usuarios</h1>
+        </div>
+        <div class="divider"></div>
+        
+         <div class="container register-section">
+            <h2>Registrarme</h2>
+            
+            <form th:action="@{/registrarme/registrarme}"  method="post">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id= "nombre" name="nombre"  placeholder="Nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correo" name="correo"  placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="residencia">País de Residencia</label>
+                            <input type="text" class="form-control" id="residencia" name="residencia" placeholder="País de Residencia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nacimiento">Fecha de Nacimiento</label>
+                            <input type="text" class="form-control" id="nacimiento" name="nacimiento" placeholder="Fecha de Nacimiento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="centered-button">
+                    <button type="submit" class="btn btn-dark btn-register">Regístrarme</button>
+                </div>
+            </form>
+        </div>
+        <style>
+            .register-section {
+                margin-top: 20px;
+            }
+            .register-section h2 {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .register-section .form-group {
+                margin-bottom: 15px;
+            }
+            .register-section .form-control {
+                margin-bottom: 10px;
+            }
+            .register-section .btn-register {
+                background-color: #000;
+                color: #fff;
+                width: auto;
+                padding: 10px 20px;
+            }
+            .divider {
+                width: 100%;
+                border-top: 1px solid #ddd;
+                margin: 20px 0;
+            }
+            .usuario {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .usuario h1 {
+                margin: 0;
+                color: #333;
+            }
+            .centered-button {
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 40px;
+            }
+        </style>
+
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>
