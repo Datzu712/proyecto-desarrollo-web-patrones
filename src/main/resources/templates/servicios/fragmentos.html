@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+        
+        <section th:fragment = "servicios">
+            <h2 class="text-center mb-4">Tu hogar lejos de casa, rodeado de naturaleza</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card w-78 h-100" style="background-color: wheat">
+                        <h5 class="card-title" style="color: black; text-align: center;">Pic nic</h5>
+                            <div class="card-body text-center">
+                                <img src="/img/picnic.jpg" class="card-img-top" style="width: 95%; height: 500px" alt="Servicio 1">
+                                <p class="card-text"style= "color: black; text-align: center;">Disfruta de un dia de celebracion en un picnic especial rodeado de naturaleza.</p>
+                                <p class="card-text"style= "color: black; text-align: center;">Adquiere tu espacio ya.</p>
+                                <a th:href="@{/servicios/listado}" class="btn btn-success">Adquirir</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card w-78 h-100" style="background-color: wheat">
+                        <h5 class="card-title"style="color: black; text-align: center;">Rancho</h5>
+                            <div class="card-body text-center">
+                                <img src="/img/rancho.jpg" class="card-img-top" style="width: 95%; height: 500px" alt="Servicio 2">
+                                <p class="card-text"style= "color: black; text-align: center;">Disfruta de tus actividades con amigos o familia en el "Rancho de Rigo".</p>
+                                <p class="card-text"style= "color: black; text-align: center;">Adquiere tu espacio ya.</p>
+                                <a th:href="@{/servicios/listado}" class="btn btn-success">Adquirir</a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card w-78 h-100" style="background-color: wheat">
+                        <h5 class="card-title"style="color: black; text-align: center;">Celebraciones</h5>
+                            <div class="card-body text-center">
+                                <img src="/img/fiestas.jpg" class="card-img-top" style="width: 95%; height: 500px" alt="Servicio 3">
+                                <p class="card-text"style= "color: black; text-align: center;">Disfruta de tus celebraciones con un toque personalizado.</p>
+                                <p class="card-text"style= "color: black; text-align: center;">Adquiere tu espacio ya.</p>
+                                <a th:href="@{/servicios/listado}" class="btn btn-success">Adquirir</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
