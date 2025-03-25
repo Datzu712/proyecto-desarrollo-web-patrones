@@ -1,1 +1,4 @@
 com\proyecto\ProyectoApplication.class
+com\proyecto\controller\ServicioAdicionalController.class
+com\proyecto\controller\CabanasController.class
+com\proyecto\controller\InfoCabanasController.class
