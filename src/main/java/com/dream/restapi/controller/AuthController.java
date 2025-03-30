@@ -31,4 +31,12 @@ public class AuthController {
     public ResponseEntity<String> register(@RequestBody AuthRegisterBody user) {
         return authService.register(user);
     }
+    
+    @GetMapping("/me")
+    public ResponseEntity<String> getCurrentUser(@CookieValue(name = "token", required = false) String token) {
+        if (token == null) {
+            return ResponseEntity.status(401).body("{\"message\": \"Not authenticated\"}");
+        }
+        return authService.getUserFromToken(token);
+    }
 }

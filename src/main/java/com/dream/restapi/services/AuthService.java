@@ -7,15 +7,20 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.auth0.jwt.interfaces.JWTVerifier;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.dream.restapi.dto.AuthRegisterBody;
 import com.dream.restapi.model.User;
 import com.dream.restapi.repository.UserRepository;
 import com.dream.restapi.utils.AppLogger;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -23,7 +28,7 @@ public class AuthService {
     private UserRepository userRepository;
     private Dotenv config = Dotenv.configure().load();
 
-        /**
+    /**
      * Authenticates a user based on the provided email and password.
      * If authentication is successful, a JWT token is generated and added as an HTTP-only cookie to the response.
      *
@@ -68,7 +73,6 @@ public class AuthService {
         return ResponseEntity.ok("{\"message\": \"Logout successful\"}");
     }
 
-
     public ResponseEntity<String> register(AuthRegisterBody body) {
         if (body.getEmail() == null || body.getPassword() == null || body.getName() == null) {
             return ResponseEntity.badRequest().body("{\"message\": \"Email, password and name are required\"}");
@@ -83,7 +87,7 @@ public class AuthService {
         user.setName(body.getName());
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
+        String hashedPassword = passwordEncoder.encode(body.getPassword());
         user.setPasswordHash(hashedPassword);
         user.setRole("user");
 
@@ -114,6 +118,32 @@ public class AuthService {
             }
         }
         return secret;
+    }
+
+    public ResponseEntity<String> getUserFromToken(String token) {
+        try {
+            String secret = this.getSecret();
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            JWTVerifier verifier = JWT.require(algorithm)
+                .withIssuer("the_dream_cr")
+                .build();
+            DecodedJWT jwt = verifier.verify(token);
+            
+            String userId = jwt.getSubject();
+            Optional<User> userOpt = userRepository.findById(Integer.parseInt(userId));
+            
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                return ResponseEntity.ok(user.toJSON());
+            } else {
+                return ResponseEntity.status(404).body("{\"message\": \"User not found\"}");
+            }
+        } catch (JWTVerificationException e) {
+            return ResponseEntity.status(401).body("{\"message\": \"Invalid token\"}");
+        } catch (Exception e) {
+            AppLogger.error("Error verifying token: " + e.getMessage());
+            return ResponseEntity.status(500).body("{\"message\": \"Error verifying token\"}");
+        }
     }
 
     private boolean checkPassword(User user, String password) {
