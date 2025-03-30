@@ -21,7 +21,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AuthService {
     @Autowired
     private UserRepository userRepository;
-    // Modified configuration load to ignore missing .env file
     private Dotenv config = Dotenv.configure().load();
 
         /**

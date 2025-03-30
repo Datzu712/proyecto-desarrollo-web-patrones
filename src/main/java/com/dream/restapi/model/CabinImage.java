@@ -24,6 +24,4 @@ public class CabinImage {
     
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-    
-    // ...existing code (getters, setters, etc.)...
 }

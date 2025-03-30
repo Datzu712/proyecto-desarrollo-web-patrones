@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "payments")
-// @Check(constraints = "amount > 0 AND payment_status in ('Pagado','Pendiente','Reembolsado','Fallido')")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +37,4 @@ public class Payment {
     
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    
-    // ...existing code (getters, setters, etc.)...
 }
