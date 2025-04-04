@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+
+        <section th:fragment="cabanas">
+            <h2 class="text-center mb-4">Tu hogar lejos de casa, rodeado de naturaleza</h2>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" th:each="cabana : ${cabanas}">
+                        <div class="card h-100 d-flex flex-column" style="max-width: 300px; margin: auto;">
+                            <img th:if="${!#lists.isEmpty(cabana.imagenes)}"
+                                 th:src="${cabana.imagenes[0].url}"
+                                 class="card-img-top"
+                                 alt="Imagen de la cabaña"
+                                 style="height: 400px; object-fit: cover;"/>
+                            <div class="card-body d-flex flex-column justify-content-between text-center">
+                                <h5 class="card-title" th:text="${cabana.nombre}">Nombre Cabaña</h5>
+                                <p class="card-text" th:text="${cabana.descripcion}">Descripción de la cabaña</p>
+                                <a th:href="@{'/cabanas/' + ${cabana.id}}" class="btn btn-primary">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

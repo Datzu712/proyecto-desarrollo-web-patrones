@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+
+        <section th:fragment="masInfoCabana">
+            <div class="container mt-4">
+                <h2 class="text-center" th:text="${cabana.nombre}">Cabaña Seleccionada</h2>
+
+                <div class="row mt-4">
+                    <!-- Calificaciones y reseñas -->
+                    <div class="col-md-3">
+                        <h5>Calificaciones (1)</h5>
+                        <h3>4.5 <small class="text-muted">de 5 estrellas</small></h3>
+                        <div class="text-warning">
+                            ★★★★☆
+                        </div>
+
+                        <h5 class="mt-4">Reseñas (1)</h5>
+                        <div>
+                            <p class="mb-1"><strong>Gran cabaña</strong></p>
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <small>Juan Esteban Peña S.</small>
+                        </div>
+                    </div>
+
+                    <!-- Carrusel de imágenes -->
+                    <div class="col-md-6 text-center">
+                        <div id="cabanaCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                            <div class="carousel-inner">
+                                <div th:each="imagen, iterStat : ${cabana.imagenes}" 
+                                     class="carousel-item" 
+                                     th:classappend="${iterStat.first} ? 'active'">
+                                    <img th:src="${imagen.url}" class="img-fluid" style="max-height: 400px; object-fit: cover;" alt="Imagen de la cabaña"/>
+                                </div>
+                            </div>
+
+                            <!-- Controles -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#cabanaCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Anterior</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#cabanaCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Siguiente</span>
+                            </button>
+                        </div>
+
+                        <button class="btn btn-dark mt-3 w-100">Agregar al carrito</button>
+                    </div>
+
+                    <!-- Detalles de la cabaña -->
+                    <div class="col-md-3">
+                        <h4 th:text="${cabana.nombre}">Cabaña familiar</h4>
+
+                        <h5>Detalles</h5>
+                        <p class="text-muted" th:text="${cabana.descripcion}">
+                            Descripción de la cabaña.
+                        </p>
+
+                        <h5>Ubicación</h5>
+                        <button class="btn btn-secondary w-100">Mapa</button>
+
+                        <h5 class="mt-3">Ofrecemos</h5>
+                        <ul class="text-muted">
+                            <li>Servicio</li>
+                        </ul>
+
+                        <a href="#" class="text-primary">Ver disponibilidad</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

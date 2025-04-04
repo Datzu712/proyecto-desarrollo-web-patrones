@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{layout/plantilla :: head}">
+    <title>El Sueño</title>
+  </head>
+
+  <body>
+    <section th:fragment="servicios">
+      <div class="container py-5">
+        <h2 class="text-center mb-4 fw-bold">
+          <i class="text-success me-2"></i>Tu hogar lejos de casa, rodeado de
+          naturaleza
+        </h2>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div
+              class="card h-100 shadow-sm rounded-3 border-0 overflow-hidden transition-card"
+            >
+              <div class="position-relative">
+                <img
+                  src="/img/picnic.jpg"
+                  class="card-img-top"
+                  style="height: 250px; object-fit: cover"
+                  alt="Servicio 1"
+                />
+                <div
+                  class="badge bg-success position-absolute top-0 end-0 m-3 py-2 px-3 rounded-pill"
+                >
+                  <i class="fas fa-tree me-1"></i>Popular
+                </div>
+              </div>
+              <div class="card-body text-center bg-light">
+                <h5 class="card-title fw-bold mb-3">
+                  <i class="fas fa-utensils text-success me-2"></i>Pic nic
+                </h5>
+                <div class="mb-2 text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <small class="text-muted ms-1">(4.5)</small>
+                </div>
+                <p class="card-text">
+                  Disfruta de un día de celebración en un picnic especial
+                  rodeado de naturaleza.
+                </p>
+                <div class="d-flex justify-content-around mb-3 text-muted">
+                  <span><i class="fas fa-users me-1"></i> 2-10</span>
+                  <span><i class="fas fa-coffee me-1"></i> Incluye</span>
+                  <span><i class="fas fa-map-marker-alt me-1"></i> Zona A</span>
+                </div>
+                <a
+                  th:href="@{/servicios/listado}"
+                  class="btn btn-success w-100"
+                >
+                  <i class="fas fa-calendar-check me-2"></i>Reservar ahora
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rancho Card -->
+          <div class="col-md-4">
+            <div
+              class="card h-100 shadow-sm rounded-3 border-0 overflow-hidden transition-card"
+            >
+              <div class="position-relative">
+                <img
+                  src="/img/rancho.jpg"
+                  class="card-img-top"
+                  style="height: 250px; object-fit: cover"
+                  alt="Servicio 2"
+                />
+                <div
+                  class="badge bg-danger position-absolute top-0 end-0 m-3 py-2 px-3 rounded-pill"
+                >
+                  <i class="fas fa-fire me-1"></i>Destacado
+                </div>
+              </div>
+              <div class="card-body text-center bg-light">
+                <h5 class="card-title fw-bold mb-3">
+                  <i class="fas fa-home text-success me-2"></i>Rancho
+                </h5>
+                <div class="mb-2 text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <small class="text-muted ms-1">(5.0)</small>
+                </div>
+                <p class="card-text">
+                  Disfruta de tus actividades con amigos o familia en el "Rancho
+                  de Rigo".
+                </p>
+                <div class="d-flex justify-content-around mb-3 text-muted">
+                  <span><i class="fas fa-users me-1"></i> 5-15</span>
+                  <span><i class="fas fa-utensils me-1"></i> Cocina</span>
+                  <span><i class="fas fa-parking me-1"></i> Parqueo</span>
+                </div>
+                <a
+                  th:href="@{/servicios/listado}"
+                  class="btn btn-success w-100"
+                >
+                  <i class="fas fa-calendar-check me-2"></i>Reservar ahora
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Celebraciones Card -->
+          <div class="col-md-4">
+            <div
+              class="card shadow-sm rounded-3 border-0 overflow-hidden transition-card"
+            >
+              <div class="position-relative">
+                <img
+                  src="/img/fiestas.jpg"
+                  class="card-img-top"
+                  style="height: 250px; object-fit: cover"
+                  alt="Servicio 3"
+                />
+                <div
+                  class="badge bg-primary position-absolute top-0 end-0 m-3 py-2 px-3 rounded-pill"
+                >
+                  <i class="fas fa-glass-cheers me-1"></i>Eventos
+                </div>
+              </div>
+              <div class="card-body text-center bg-light">
+                <h5 class="card-title fw-bold mb-3">
+                  <i class="fas fa-birthday-cake text-success me-2"></i
+                  >Celebraciones
+                </h5>
+                <div class="mb-2 text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <small class="text-muted ms-1">(4.0)</small>
+                </div>
+                <p class="card-text">
+                  Disfruta de tus celebraciones con un toque personalizado y
+                  único.
+                </p>
+                <div class="d-flex justify-content-around mb-3 text-muted">
+                  <span><i class="fas fa-users me-1"></i> 10-50</span>
+                  <span><i class="fas fa-music me-1"></i> Sonido</span>
+                  <span
+                    ><i class="fas fa-shuttle-van me-1"></i> Transporte</span
+                  >
+                </div>
+                <a
+                  th:href="@{/servicios/listado}"
+                  class="btn btn-success w-100"
+                >
+                  <i class="fas fa-calendar-check me-2"></i>Reservar ahora
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
