@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"
+    <title>Reserva</title>
+</head>
+<body>
+
+    <section th:fragment="reservaServicio">
+        <div class="container py-5">
+            <h2 class="text-center mb-4 fw-bold text-success">
+                <i class="fas fa-calendar-check me-2"></i>Reserva
+            </h2>
+
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="col-md-6">
+                    <label for="personas" class="form-label">Cantidad de Personas</label>
+                    <input type="number" class="form-control" id="personas" min="1" required />
+                    <div class="invalid-feedback">
+                        Ingresa la cantidad de personas.
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" required />
+                    <div class="invalid-feedback">
+                        Selecciona una fecha válida.
+                    </div>
+                </div>
+
+                <div class="col-md-6 offset-md-3">
+                    <label for="hora" class="form-label">Hora</label>
+                    <input type="time" class="form-control" id="hora" required />
+                    <div class="invalid-feedback">
+                        Selecciona una hora válida.
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex justify-content-center pt-3">
+                    <button class="btn btn-success btn-lg" type="submit">
+                        <i class="fas fa-paper-plane me-2"></i>Confirmar Reserva
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</body>
