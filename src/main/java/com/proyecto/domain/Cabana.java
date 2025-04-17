@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "cabanas")
+@Table(name = "cabins")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +15,8 @@ public class Cabana {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nombre;
+    private String name;
+    @Column(name = "description")
     private String descripcion;
     
     @OneToMany(mappedBy = "cabana",cascade = CascadeType.ALL, orphanRemoval = true)
@@ -29,12 +30,12 @@ public class Cabana {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescripcion() {

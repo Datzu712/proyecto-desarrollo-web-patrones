@@ -45,7 +45,7 @@ public class CabanaService {
         Optional<Cabana> cabana = cabanaRepository.findById(cabanaId);
         if(cabana.isPresent()){
             Imagen imagen = new Imagen();
-            imagen.setUrl(url);
+            imagen.setImage_url(url);
             imagen.setCabana(cabana.get());
             return imagenRepository.save(imagen);
         }

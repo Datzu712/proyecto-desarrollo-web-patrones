@@ -10,7 +10,7 @@
 
         <section th:fragment="masInfoCabana">
             <div class="container mt-4">
-                <h2 class="text-center" th:text="${cabana.nombre}">Cabaña Seleccionada</h2>
+                <h2 class="text-center" th:text="${cabana.name}">Cabaña Seleccionada</h2>
 
                 <div class="row mt-4">
                     <!-- Calificaciones y reseñas -->
@@ -36,7 +36,7 @@
                                 <div th:each="imagen, iterStat : ${cabana.imagenes}" 
                                      class="carousel-item" 
                                      th:classappend="${iterStat.first} ? 'active'">
-                                    <img th:src="${imagen.url}" class="img-fluid" style="max-height: 400px; object-fit: cover;" alt="Imagen de la cabaña"/>
+                                    <img th:src="${imagen.image_url}" class="img-fluid" style="max-height: 400px; object-fit: cover;" alt="Imagen de la cabaña"/>
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
 
                     <!-- Detalles de la cabaña -->
                     <div class="col-md-3">
-                        <h4 th:text="${cabana.nombre}">Cabaña familiar</h4>
+                        <h4 th:text="${cabana.name}">Cabaña familiar</h4>
 
                         <h5>Detalles</h5>
                         <p class="text-muted" th:text="${cabana.descripcion}">

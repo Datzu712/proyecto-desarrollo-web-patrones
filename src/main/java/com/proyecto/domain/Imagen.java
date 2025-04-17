@@ -5,7 +5,7 @@ import lombok.*;
 
 
 @Entity
-@Table(name = "imagenes")
+@Table(name = "cabin_images")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,10 +13,10 @@ public class Imagen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String url;
+    private String image_url;
     
     @ManyToOne
-    @JoinColumn(name = "cabana_id", nullable = false)
+    @JoinColumn(name = "cabin_id", nullable = false)
     private Cabana cabana;
 
     public Integer getId() {
@@ -27,12 +27,12 @@ public class Imagen {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public Cabana getCabana() {
