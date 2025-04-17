@@ -14,4 +14,10 @@ public class ReservaServicioController {
         return "servicios/reserva/listado";
     }
     
+@PostMapping("/guardar")
+public String guardarReserva(RedirectAttributes redirectAttributes) {
+    redirectAttributes.addFlashAttribute("exito", true);
+    return "redirect:/servicios/reserva/listado";
+}
+    
 }
