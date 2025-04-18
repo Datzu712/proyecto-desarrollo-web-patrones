@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+
+        <section th:fragment="login">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+                    <!-- Mostrar mensaje si viene con ?error -->
+                    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                        Usuario o contraseña incorrectos.
+                    </div>
+
+                    <!-- Mostrar mensaje si viene con ?logout -->
+                    <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                        Sesión cerrada correctamente.
+                    </div>
+
+                    <!-- Mostrar mensaje si viene con ?registered -->
+                    <div th:if="${param.registered}" class="alert alert-success" role="alert">
+                        Registro exitoso. Ahora puedes iniciar sesión.
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Correo electrónico</label>
+                            <input type="email" id="username" name="username" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" id="password" name="password" class="form-control" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        ¿No tienes cuenta?
+                        <a th:href="@{/auth/register}">Regístrate aquí</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section th:fragment ="registrar">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="text-center mb-4">Crear una cuenta</h2>
+                    <form th:action="@{/auth/register}" method="post" th:object="${user}">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre completo</label>
+                            <input type="text" id="name" class="form-control" th:field="*{name}" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" id="email" class="form-control" th:field="*{email}" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" id="password" class="form-control" th:field="*{password}" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Teléfono</label>
+                            <input type="text" id="phone" class="form-control" th:field="*{phone}" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Dirección</label>
+                            <textarea id="address" class="form-control" th:field="*{address}"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        ¿Ya tienes cuenta?
+                        <a th:href="@{/auth/login}">Inicia sesión aquí</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </body>
+</html>

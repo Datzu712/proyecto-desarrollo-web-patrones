@@ -4,7 +4,11 @@
 
     <head th:replace="~{layout/plantilla :: head}">
         <title>El Sueño</title>
+
+
     </head>
+
+
 
     <body>
 
@@ -31,27 +35,29 @@
 
                     <!-- Carrusel de imágenes -->
                     <div class="col-md-6 text-center">
-                        <div id="cabanaCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-                            <div class="carousel-inner">
-                                <div th:each="imagen, iterStat : ${cabana.imagenes}" 
-                                     class="carousel-item" 
-                                     th:classappend="${iterStat.first} ? 'active'">
-                                    <img th:src="${imagen.image_url}" class="img-fluid" style="max-height: 400px; object-fit: cover;" alt="Imagen de la cabaña"/>
+                        <div class="p-4 shadow-sm rounded" style="background-color: white;">
+                            <div id="cabanaCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                                <div class="carousel-inner">
+                                    <div th:each="imagen, iterStat : ${cabana.imagenes}" 
+                                         class="carousel-item" 
+                                         th:classappend="${iterStat.first} ? 'active'">
+                                        <img th:src="${imagen.image_url}" class="img-fluid" style="max-height: 400px; object-fit: cover;" alt="Imagen de la cabaña"/>
+                                    </div>
                                 </div>
+
+                                <!-- Controles -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#cabanaCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#cabanaCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
                             </div>
 
-                            <!-- Controles -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#cabanaCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Anterior</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#cabanaCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Siguiente</span>
-                            </button>
+                            <button class="btn btn-dark mt-3 w-100">Agregar al carrito</button>
                         </div>
-
-                        <button class="btn btn-dark mt-3 w-100">Agregar al carrito</button>
                     </div>
 
                     <!-- Detalles de la cabaña -->
@@ -64,7 +70,9 @@
                         </p>
 
                         <h5>Ubicación</h5>
-                        <button class="btn btn-secondary w-100">Mapa</button>
+                        <p class="text-muted" th:text="${cabana.location}">
+                            Ubicación de la cabaña.
+                        </p>
 
                         <h5 class="mt-3">Ofrecemos</h5>
                         <ul class="text-muted">

@@ -1,6 +1,7 @@
 package com.proyecto.domain;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import lombok.*;
 import java.util.List;
 
@@ -18,10 +19,21 @@ public class Cabana {
     private String name;
     @Column(name = "description")
     private String descripcion;
+    private String location;
+    private String status;
+    private BigDecimal price;
     
     @OneToMany(mappedBy = "cabana",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Imagen> imagenes;
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    } 
+    
     public Integer getId() {
         return id;
     }
@@ -52,6 +64,22 @@ public class Cabana {
 
     public void setImagenes(List<Imagen> imagenes) {
         this.imagenes = imagenes;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     

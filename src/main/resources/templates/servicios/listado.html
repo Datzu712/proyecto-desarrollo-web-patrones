@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{layout/plantilla :: head}">
-    <title>El Sueño</title>
-  </head>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-  <body>
-    <header th:replace="~{layout/plantilla :: header}"></header>
-    <main>
-      <section th:replace="~{servicios/fragmentos :: servicios}"></section>
-    </main>
-    <footer th:replace="~{layout/plantilla :: footer}"></footer>
-  </body>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"></header>
+        <main>
+            <section th:replace="~{servicios/fragmentos :: servicios}"></section>
+        </main>
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
 </html>
