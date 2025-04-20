@@ -1,7 +1,9 @@
 package com.proyecto.controller;
 
+import com.proyecto.domain.Booking;
 import com.proyecto.domain.Cabana;
 import com.proyecto.domain.Imagen;
+import com.proyecto.service.BookingService;
 import com.proyecto.service.CabanaService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -15,68 +17,59 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 @RequestMapping("/cabanas")
 public class CabanasController {
-    
+
     private final CabanaService cabanaService;
-    
-    public CabanasController(CabanaService cabanaService){
+
+    public CabanasController(CabanaService cabanaService) {
         this.cabanaService = cabanaService;
     }
+
     
     @GetMapping
-    public ResponseEntity<List<Cabana>> obtenerTodas(){
+    public ResponseEntity<List<Cabana>> obtenerTodas() {
         return ResponseEntity.ok(cabanaService.obtenerTodasLasCabanas());
     }
-    
-    /*
-    @GetMapping("/{id}")
-    public ResponseEntity<Cabana> obtenerPorId(@PathVariable Integer id){
-        Cabana cabana = cabanaService.obtenerCabanaPorId(id);
-        return cabana != null ? ResponseEntity.ok(cabana) : ResponseEntity.notFound().build();
-    }
-    */
-    
-    
+
     @PostMapping
-    public ResponseEntity<Cabana> guardarCabana(@RequestBody Cabana cabana){
+    public ResponseEntity<Cabana> guardarCabana(@RequestBody Cabana cabana) {
         return ResponseEntity.ok(cabanaService.guardarCabana(cabana));
     }
-    
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarCabana(@PathVariable Integer id){
+    public ResponseEntity<Void> eliminarCabana(@PathVariable Integer id) {
         cabanaService.eliminarCabana(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @GetMapping("/{id}/imagenes")
-    public ResponseEntity<List<Imagen>> obtenerImagenes(@PathVariable Integer id){
+    public ResponseEntity<List<Imagen>> obtenerImagenes(@PathVariable Integer id) {
         return ResponseEntity.ok(cabanaService.obtenerImagenesPorCabana(id));
     }
-    
+
     @PostMapping("/{id}/imagenes")
-    public ResponseEntity<Imagen> agregarImagen(@PathVariable Integer id, @RequestParam String url){
+    public ResponseEntity<Imagen> agregarImagen(@PathVariable Integer id, @RequestParam String url) {
         Imagen imagen = cabanaService.agregarImagenACabana(id, url);
         return imagen != null ? ResponseEntity.ok(imagen) : ResponseEntity.notFound().build();
     }
-    
+
     @GetMapping("/listado")
-    public String mostrarListado(Model model){
+    public String mostrarListado(Model model) {
         List<Cabana> cabanas = cabanaService.obtenerTodasLasCabanas();
         model.addAttribute("cabanas", cabanas);
         return "cabanas/listado";
     }
-    
+
     @GetMapping("/{id}")
-    public String verDetalle(@PathVariable Integer id, Model model){
+    public String verDetalle(@PathVariable Integer id, Model model) {
         Cabana cabana = cabanaService.obtenerCabanaPorId(id);
-        if(cabana == null){
+        if (cabana == null) {
             return "redirect:/cabanas";
         }
         model.addAttribute("cabana", cabana);
         return "cabanas/infoCabanas/listado";
     }
-    
+
 }

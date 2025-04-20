@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+
+        <section th:fragment="reservasPorUsuario">
+            <div class="container">
+                <h1>Mis Reservas</h1>
+
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+                <div th:if="${reservas == null or reservas.empty}">
+                    <p>No tienes reservas realizadas.</p>
+                </div>
+
+                <div th:unless="${reservas == null or reservas.empty}">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Cabaña</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Fin</th>
+                                <th>Noches</th>
+                                <th>Huéspedes</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="reserva : ${reservas}" th:if="${reserva != null}">
+                                <td th:text="${reserva.cabana?.name} ?: 'No disponible'">Nombre Cabaña</td>
+                                <td th:text="${reserva.startDate != null} ? ${#temporals.format(reserva.startDate, 'dd/MM/yyyy')} : 'No definida'">Fecha Inicio</td>
+                                <td th:text="${reserva.endDate != null} ? ${#temporals.format(reserva.endDate, 'dd/MM/yyyy')} : 'No definida'">Fecha Fin</td>
+                                <td th:text="${reserva.nights} ?: '0'">Noches</td>
+                                <td th:text="${reserva.guests} ?: '0'">Huéspedes</td>
+                                <td th:text="${reserva.totalAmount != null} ? ${'$' + #numbers.formatDecimal(reserva.totalAmount, 1, 2)} : '$0.00'">Total</td>
+                                <td>
+                                    <span th:if="${reserva.status == 'CONFIRMADA'}" 
+                                          class="badge bg-success" 
+                                          th:text="${reserva.status}">
+                                    </span>
+                                    <span th:if="${reserva.status == 'CANCELADA'}" 
+                                          class="badge bg-danger" 
+                                          th:text="${reserva.status}">
+                                    </span>
+                                    <span th:if="${reserva.status != null and reserva.status != 'CONFIRMADA' and reserva.status != 'CANCELADA'}" 
+                                          class="badge bg-secondary" 
+                                          th:text="${reserva.status}">
+                                    </span>
+                                    <span th:if="${reserva.status == null}" 
+                                          class="badge bg-warning">
+                                        SIN ESTADO
+                                    </span>
+                                </td>
+                                <td>
+                                    <form th:action="@{/cancelar/{id}(id=${reserva.id})}" 
+                                          method="post"
+                                          th:if="${reserva.status == 'CONFIRMADA'}"
+                                          style="display: inline;">
+
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('¿Estás seguro de cancelar esta reserva?')">
+                                            Cancelar
+                                        </button>
+                                    </form>
+
+                                    <span th:unless="${reserva.status == 'CONFIRMADA'}" class="text-muted">No aplica</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

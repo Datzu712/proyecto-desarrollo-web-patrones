@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>El Sueño</title>
+    </head>
+
+    <body>
+
+        <section th:ref="formularioReserva">
+            
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+            <h1>Formulario de Reserva</h1>
+
+            <!-- Formulario completo y correctamente estructurado -->
+            <form th:action="@{/bookings/reserva}" th:object="${booking}" method="post">
+                <input type="hidden" name="cabanaId" th:value="${cabana.id}">
+
+                    <!-- Campos existentes -->
+                    <div class="mb-3">
+                        <label>Fecha de inicio</label>
+                        <input type="date" th:field="*{startDate}" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Fecha de fin</label>
+                        <input type="date" th:field="*{endDate}" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Huéspedes</label>
+                        <select th:field="*{guests}" class="form-select" required>
+                            <option th:each="i : ${#numbers.sequence(1, 10)}" 
+                                    th:value="${i}" 
+                                    th:text="${i}"></option>
+                        </select>
+                    </div>
+
+                    <!-- Nuevo campo para observaciones -->
+                    <div class="mb-3">
+                        <label>Observaciones</label>
+                        <textarea th:field="*{observations}" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Reservar</button>
+            </form>
+            
+        </section>
+
+
+    </body>
+</html>

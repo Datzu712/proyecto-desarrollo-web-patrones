@@ -6,14 +6,16 @@
 
     <head th:replace="~{layout/plantilla :: head}">
         <title>El Sueño</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" th:unless="${#strings.startsWith(#request.requestURI, '/bookings')}"/>
     </head>
     <body>
 
         <header th:replace="~{layout/plantilla :: header}"/>
         <main>
-            <section th:replace="~{cabanas/infoCabanas/fragmentos :: masInfoCabana}"></section>
+            <section th:replace="~{reservasUsuario/fragmentos :: reservasPorUsuario}"></section>
         </main>
         <footer th:replace="~{layout/plantilla :: footer}"/>
-  
+
     </body>
+
 </html>

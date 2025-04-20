@@ -22,25 +22,25 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Vista del formulario de registro
+    
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());
-        return "auth/register"; // ← templates/auth/register.html
+        return "auth/register"; // 
     }
 
-    // Procesamiento del formulario de registro
+    
     @PostMapping("/register")
     public String processRegister(@ModelAttribute("user") User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER"); // puedes cambiar a ADMIN si quieres
+        user.setRole("USER"); // 
         userRepository.save(user);
         return "redirect:/login?registered";
     }
 
-    // Vista del login
+  
     @GetMapping("/login")
     public String login() {
-        return "auth/login"; // ← templates/auth/login.html
+        return "auth/login"; 
     }
 }

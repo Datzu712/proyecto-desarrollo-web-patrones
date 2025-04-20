@@ -4,8 +4,6 @@
 
     <head th:replace="~{layout/plantilla :: head}">
         <title>El Sueño</title>
-
-
     </head>
 
 
@@ -35,7 +33,7 @@
 
                     <!-- Carrusel de imágenes -->
                     <div class="col-md-6 text-center">
-                        <div class="p-4 shadow-sm rounded" style="background-color: white;">
+                        <div class="p-4 shadow-sm rounded" style="background-color: rgba(255, 255, 255, 0.85);">
                             <div id="cabanaCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                                 <div class="carousel-inner">
                                     <div th:each="imagen, iterStat : ${cabana.imagenes}" 
@@ -56,7 +54,10 @@
                                 </button>
                             </div>
 
-                            <button class="btn btn-dark mt-3 w-100">Agregar al carrito</button>
+                            <a th:href="@{/bookings/reserva(cabanaId=${cabana.id})}" 
+                               class="btn btn-dark mt-3 w-100">
+                                Reservar ahora
+                            </a>
                         </div>
                     </div>
 
@@ -73,16 +74,11 @@
                         <p class="text-muted" th:text="${cabana.location}">
                             Ubicación de la cabaña.
                         </p>
-
-                        <h5 class="mt-3">Ofrecemos</h5>
-                        <ul class="text-muted">
-                            <li>Servicio</li>
-                        </ul>
-
-                        <a href="#" class="text-primary">Ver disponibilidad</a>
+                        
                     </div>
                 </div>
             </div>
         </section>
+
     </body>
 </html>

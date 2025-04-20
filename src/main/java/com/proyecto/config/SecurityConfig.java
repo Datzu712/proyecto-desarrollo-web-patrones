@@ -24,18 +24,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/bookings/**","/reservasUsuario/**","/misReservas/**").authenticated()
                 .requestMatchers(
                         "/","/index","/cabanas/**",
                         "servicios/**","/js/**", "/webjars/**",
-                        "/css/**","/layout/**","/img/**","auth/**"
+                        "/css/**","/layout/**","/img/**","auth/**","/api/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 )
                 
                 .formLogin(form -> form
-                .loginPage("/login")
+                .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
                 .failureUrl("/login?error=true")
